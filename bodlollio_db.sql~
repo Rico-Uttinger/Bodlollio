@@ -1,0 +1,55 @@
+USE bodlollio_db;
+2> CREATE TABLE [dbo].[Comment] (
+3>     [Id]        INT      IDENTITY (1, 1) NOT NULL,
+4>     [PostId]    INT      NULL,
+5>     [UserId]    INT      NULL,
+6>     [Commet]    TEXT     NULL,
+7>     [CreatedOn] DATETIME NULL,
+8>     PRIMARY KEY CLUSTERED ([Id] ASC)
+9> );
+10> CREATE TABLE [dbo].[Post] (
+11>     [Id]          INT           IDENTITY (1, 1) NOT NULL,
+12>     [UserId]      INT           NOT NULL,
+13>     [Title]       VARCHAR (50)  NOT NULL,
+14>     [Description] VARCHAR (500) NOT NULL,
+15>     [Content]     TEXT          NOT NULL,
+16>     [CreatedOn]   DATETIME      NULL,
+17>     [ModifiedOn]  DATETIME      NULL,
+18>     [DeletedOn]   DATETIME      NULL,
+19>     PRIMARY KEY CLUSTERED ([Id] ASC)
+20> );
+21> CREATE TABLE [dbo].[Token] (
+22>     [Id]        INT          IDENTITY (1, 1) NOT NULL,
+23>     [Token]     VARCHAR (50) NOT NULL,
+24>     [UserId]    INT          NOT NULL,
+25>     [Expiry]    DATETIME     NOT NULL,
+26>     [DeletedOn] DATETIME     NULL,
+27>     PRIMARY KEY CLUSTERED ([Id] ASC)
+28> );
+29> CREATE TABLE [dbo].[User] (
+30>     [Id]                INT          IDENTITY (1, 1) NOT NULL,
+31>     [Username]          VARCHAR (50) NOT NULL,
+32>     [Password]          VARCHAR (50) NOT NULL,
+33>     [Firstname]         VARCHAR (50) NOT NULL,
+34>     [Familyname]        VARCHAR (50) NOT NULL,
+35>     [Mobilephonenumber] VARCHAR (50) NULL,
+36>     [Role]              VARCHAR (20) NULL,
+37>     [Status]            VARCHAR (20) NULL,
+38>     PRIMARY KEY CLUSTERED ([Id] ASC)
+39> );
+40> CREATE TABLE [dbo].[UserLog] (
+41>     [Id]     INT           IDENTITY (1, 1) NOT NULL,
+42>     [UserId] INT           NULL,
+43>     [Action] VARCHAR (500) NULL,
+44>     PRIMARY KEY CLUSTERED ([Id] ASC)
+45> );
+46> CREATE TABLE [dbo].[Userlogin] (
+47>     [Id]         INT          IDENTITY (1, 1) NOT NULL,
+48>     [UserId]     INT          NOT NULL,
+49>     [IP]         VARCHAR (50) NULL,
+50>     [SessionId]  VARCHAR (50) NULL,
+51>     [CreatedOn]  DATETIME     NULL,
+52>     [ModifiedOn] DATETIME     NULL,
+53>     [DeletedOn]  DATETIME     NULL,
+54>     PRIMARY KEY CLUSTERED ([Id] ASC)
+55> );
