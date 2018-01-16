@@ -14,26 +14,26 @@ namespace Bodlollio.Controllers
             return View();
         }
 
-using System;
         public ActionResult Dashboard()
-    {
-
-        var current_user = (string)Session["username"];
-        var user_roles = MvcApplication.UserRoles;
-        var current_user_role = (string)user_roles[current_user];
-
-        if (current_user_role == "Administrator")
         {
 
-            // access granted
+            var current_user = (string)Session["username"];
+            //var user_roles = MvcApplication.UserRoles;
+            //var current_user_role = (string)user_roles[current_user];
+            var current_user_role = "asdf";
 
-        }
-        else
-        {
-            return RedirectToAction("Index", "Home");
-        }
+            if (current_user_role == "Administrator")
+            {
 
-        return View();
+                // access granted
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
     }
-}
 }
