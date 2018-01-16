@@ -37,5 +37,26 @@ namespace Bodlollio.Controllers
 
             return View();
         }
+        /* Role_Based_Auth */
+        public ActionResult Dashboard()
+        {
+
+            var current_user = (string)Session["username"];
+            //var user_roles = MvcApplication.UserRoles;
+            var current_user_role = (string)user_roles[current_user];
+
+            if (current_user_role == "Administrator")
+            {
+
+                // access granted
+
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
     }
 }
