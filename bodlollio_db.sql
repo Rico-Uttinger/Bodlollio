@@ -1,3 +1,4 @@
+CREATE DATABASE bodlollio_db;
 USE bodlollio_db;
 CREATE TABLE [dbo].[Comment] (
     [Id]        INT      IDENTITY (1, 1) NOT NULL,

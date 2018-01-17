@@ -11,6 +11,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Bodlollio.Models;
+using System.Net;
+using System.Text;
+using System.IO;
 
 namespace Bodlollio
 {
@@ -28,7 +31,31 @@ namespace Bodlollio
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your SMS service here to send a text message.
-            return Task.FromResult(0);
+
+            var request = (HttpWebRequest)WebRequest.Create("https://rest.nexmo.com/sms/json");
+            
+            var postData = "api_key="+NexmoData.api_key;
+            postData += "&api_secret="+NexmoData.api_secret;
+            postData += "&to=" + message.Destination;
+            postData += "&from=NEXMO";
+            postData += "&text="+message.Body;
+
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = data.Length;
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+            var response = (HttpWebResponse)request.GetResponse();
+
+            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            
+            return Task.FromResult(responseString);
         }
     }
 
