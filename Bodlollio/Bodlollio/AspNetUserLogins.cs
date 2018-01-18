@@ -12,12 +12,12 @@ namespace Bodlollio
     using System;
     using System.Collections.Generic;
     
-    public partial class Token
+    public partial class AspNetUserLogins
     {
-        public int Id { get; set; }
-        public string Token1 { get; set; }
-        public int UserId { get; set; }
-        public System.DateTime Expiry { get; set; }
-        public Nullable<System.DateTime> DeletedOn { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
+    
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

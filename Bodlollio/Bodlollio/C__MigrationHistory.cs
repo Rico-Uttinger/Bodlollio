@@ -12,15 +12,11 @@ namespace Bodlollio
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class C__MigrationHistory
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Firstname { get; set; }
-        public string Familyname { get; set; }
-        public string Mobilephonenumber { get; set; }
-        public string Role { get; set; }
-        public string Status { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace Bodlollio
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bodlollio_dbEntities : DbContext
+    public partial class Bodlollio_Context : DbContext
     {
-        public bodlollio_dbEntities()
-            : base("name=bodlollio_dbEntities")
+        public Bodlollio_Context()
+            : base("name=Bodlollio_Context")
         {
         }
     
@@ -25,11 +25,11 @@ namespace Bodlollio
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Comment> Comment { get; set; }
-        public virtual DbSet<Post> Post { get; set; }
-        public virtual DbSet<Token> Token { get; set; }
-        public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<UserLog> UserLog { get; set; }
-        public virtual DbSet<Userlogin> Userlogin { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Post> PostSet { get; set; }
     }
 }

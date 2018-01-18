@@ -12,12 +12,13 @@ namespace Bodlollio
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class AspNetUserClaims
     {
         public int Id { get; set; }
-        public Nullable<int> PostId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public string Commet { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+    
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\Lordnik_PC\Projects\Bodlollio\Bodlollio\Bodlollio\Bodlollio_Context.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\BlaettlM\OneDrive - Landis+Gyr\Projects\Bodlollio\Bodlollio\Bodlollio\Bodlollio_Context.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

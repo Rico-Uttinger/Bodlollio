@@ -60,11 +60,14 @@ namespace Bodlollio.Controllers
 
             return View();
         }
-        /* Role_Based_Auth */
+        
         public ActionResult Dashboard()
         {
-
             var current_user = (string)Session["username"];
+            var context = new Bodlollio_Context();
+            context.PostSet.Add(new Post() { Status = "published", Text = "Wholololo", AspNetUsersPost = context.AspNetUsers.First() });
+            context.SaveChanges();
+            var test = new Bodlollio_Context().PostSet.Select(p => true).ToList();
             // var user_roles = MvcApplication.UserRoles;
             //var current_user_role = (string)user_roles[current_user];
             var current_user_role = "asdf";

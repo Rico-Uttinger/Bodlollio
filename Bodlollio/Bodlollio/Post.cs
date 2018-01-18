@@ -15,12 +15,9 @@ namespace Bodlollio
     public partial class Post
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Content { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public Nullable<System.DateTime> DeletedOn { get; set; }
+        public string Text { get; set; }
+        public string Status { get; set; }
+    
+        public virtual AspNetUsers AspNetUsersPost { get; set; }
     }
 }
