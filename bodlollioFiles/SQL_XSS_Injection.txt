@@ -1,0 +1,49 @@
+MySQL-Server aufsetzen
+
+
+public ActionResult DoFeedback()
+        {
+            var feedback = "";
+
+            feedback = Request["feedback"];
+            
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\gibz\\Documents\\Visual Studio 2017\\Projects\\Database_SQL_XSS_Injections\\Database_SQL_XSS_Injections\\App_Data\\sql_xss_injections.mdf\";Integrated Security=True;MultipleActiveResultSets=True;Connect Timeout=30;Application Name=EntityFramework";
+
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "INSERT INTO [dbo].[Feedback] (feedback) VALUES('" + feedback + "')";
+            cmd.Connection = con;
+
+            con.Open();
+
+            reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+
+                ViewBag.Message = "success";
+
+                while (reader.Read())
+                {
+                    ViewBag.Message += reader.GetInt32(0) + " " + reader.GetString(1) + " " + reader.GetString(2); // id & value?
+                }
+            }
+            else
+            {
+                ViewBag.Message = "nothing to read of";
+            }
+
+            /* string pattern = "(Mr\\.? |Mrs\\.? |Miss |Ms\\.? )";
+            string[] names = { "Mr. Henry Hunt", "Ms. Sara Samuels", 
+                              "Abraham Adams", "Ms. Nicole Norris" };
+            foreach (string name in names)
+              Console.WriteLine(Regex.Replace(name, pattern, String.Empty));
+            */
+
+            con.Close();
+            
+
+            return View();
+        }

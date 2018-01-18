@@ -1,0 +1,79 @@
+        public ActionResult DoLogin()
+        {
+
+            var username = Request["username"];
+            var password = Request["password "];
+            var stay_logged_in = Request["stay_logged_in"];
+
+            if (username == "test" && password == "test")
+            {
+
+                // Checkboxex are submitted with "on"-value, in case they are checked
+                if (stay_logged_in == "on")
+                {
+                    var auth_cookie = new HttpCookie("misleading_name_for_an_authentication_cookie");
+                    auth_cookie.Value = "SOME_NONCE_VALUE";
+                    auth_cookie.Expires = DateTime.Now.AddDays(14d);
+                    auth_cookie.Path = "localhost:49764";
+
+                    Response.Cookies.Add(auth_cookie);
+                    // use a "custom" cookie with an duration of today + 2 Weeks
+                }
+                else
+                {
+                    // return a "default" ASP.NET SESSION-ID-Cookie
+                    Session["misleading_name_for_an_authentication_cookie"] = "SOME_NONCE_VALUE"; // creates a session immediately
+                }
+
+                //Response.Redirect("Admin/Home");
+                return RedirectToAction("home", "admin");
+            }
+            else
+            {
+                ViewBag.content = "Failed to login"; 
+            }
+
+
+            return View();
+        }
+
+
+ public ActionResult Logout()
+        {
+
+            // Destroy both: ASP.NET and the Custom Cookie
+
+            // Custom Cookie
+            var auth_cookie = new HttpCookie("misleading_name_for_an_authentication_cookie");
+            auth_cookie.Value = "SOME_NONCE_VALUE";
+            auth_cookie.Expires = DateTime.Now.AddDays(-10); // or set to:  Thu, 01 Jan 1970 00:00:00 GMT
+            auth_cookie.Path = "localhost:49764";
+
+            Response.Cookies.Add(auth_cookie);
+
+            // ASP.NET Session
+            Session.Clear();
+
+            return RedirectToAction("home", "admin");
+            //Response.Redirect("Home/Index");            
+        }
+
+
+bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
+
+            // Verwenden Sie die Entwicklungsversion von Modernizr zum Entwickeln und Erweitern Ihrer Kenntnisse. Wenn Sie dann
+            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                        "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
