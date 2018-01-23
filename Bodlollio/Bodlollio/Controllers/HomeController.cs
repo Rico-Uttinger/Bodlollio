@@ -33,10 +33,11 @@ public static string HashPassword(string password)
 }
  * 2) In der User-Login-Tabelle ist noch ein Feld für die IP-Adresse Reserviert. Welche Attacke lässt
  * sich dadurch verhindern?
- * 
+ * Deny of Service (DOS).
  * 3) Erklären Sie, wie diese Attacke genau funktioniert und inwiefern die Gegenmassnahmen die
  * Attacke vereitelt?
- * 
+ * Eine DOS-Attacke funktioniert so das man ein Opfer mit Anfragen überfordert und dieser darum zeitweilig zusammenbricht (nicht mehr erreichbar ist).
+ * Durch das speichern der IP lässt sich schnell erkennen von welchem System viele Anfragen kommen und so frühzeitig blocken.
  */
 namespace Bodlollio.Controllers
 {
